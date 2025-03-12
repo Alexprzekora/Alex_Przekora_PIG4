@@ -7,7 +7,7 @@
 #include <cstdlib>
 #include <ctime>
 
-Die::Die(int sides) {
+Die::Die(int sides) : sides(sides){
     srand(time(NULL));
 }
 

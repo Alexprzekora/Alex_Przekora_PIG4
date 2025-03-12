@@ -22,7 +22,7 @@ void Game::playGame() {
         cout << "\nTURN " << game_state.getTurn() << endl;
         takeTurn();
     }
-    cout << " You finished with a final score of 20 or more in " << game_state.getTurn() << " turns!" << endl;
+    cout << "You finished with a final score of 20 or more in " << game_state.getTurn() << " turns!" << endl;
 }
 void Game::takeTurn() {
     int turn_score=0;
@@ -36,7 +36,8 @@ void Game::takeTurn() {
             if ( die_roll == 1) {
                 cout << "Turn over. No score. \n";
                 return;
-            } else {
+            }
+            if (die_roll > 1) {
                 turn_score += die_roll;
             }
         }

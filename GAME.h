@@ -12,13 +12,14 @@ public:
     void displayrules() const;
     void takeTurn();
     void playGame();
+    void hold(int target_score);
+
 
     private:
     GameState game_state;
     Die die;
     int target_score;
-
-    void hold(int target_score);
+    
 };
 
 
