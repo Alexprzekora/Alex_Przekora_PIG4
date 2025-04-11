@@ -4,25 +4,25 @@
 
 #ifndef GAMESTATE_H
 #define GAMESTATE_H
+#include <string>
 
+#include "Die.h"
 
 
 class GameState {
 public:
     GameState();
 
-    int getscore() const;
-    int getTurn() const;
-    bool isGameOver() const;
-
-    void incrementTurn();
-    void addScore(int turn_score);
-    void setGameOver();
+    void reset_turn();
+    bool get_turn_over();
+    void take_turn(const std::string& player_name, int player_score, int turn_number);
+    int get_turn_score();
 
 private:
-    int score;
-    int turn;
-    bool game_over;
+    char m_choice;
+    int m_turn_score;
+    bool m_turn_over;
+    Die m_myDie;
 
 };
 

@@ -1,26 +1,46 @@
 //
 // Created by administrator on 2/26/25.
 //
-
-
-
-
-void takeTurn();
+using namespace std;
+#include <iostream>
 #include "GameState.h"
-
-GameState::GameState() : score(0), turn(0), game_over(false) {}
-
-int GameState::getscore() const { return score; }
-int GameState::getTurn() const { return turn; }
-bool GameState::isGameOver() const { return game_over; }
-
-void GameState::incrementTurn() {
-    turn++;
+GameState::GameState() : m_turn_score(0), m_turn_over(false){}
+void GameState::reset_turn() {
+    m_turn_score = 0;
+    m_turn_over = false;
 }
-void GameState::addScore(int turn_score) {
-    score += turn_score;
+bool GameState::get_turn_over() {
+    return m_turn_over;
 }
-void GameState::setGameOver() {
-    game_over = true;
+void GameState::take_turn(const string& player_name, int player_score, int turn_number) {
+    reset_turn();
+    char choice;
+    cout << player_name << " (Score:" << player_score << ") - TURN " << turn_number <<endl;
+    while(!m_turn_over) {
+        cout << "roll or hold? (r/h): ";
+        cin >> choice;
+        if(choice == 'r') {
+            m_myDie.roll();
+            int roll= m_myDie.get_die_value();
+            cout << "Die: " << roll << endl;
+            if ( roll == 1) {
+                cout << "Turn over. No score. \n";
+                m_turn_score=0;
+                m_turn_over=true;
+            }
+            else {
+                m_turn_score+=roll;
+            }
+        }else if(choice == 'h') {
+            m_turn_over=true;
+        }
+        else {
+            cout << "Invalid choice! Try again." << endl;
+        }
+        cout << "Score for turn: " << m_turn_score << endl;
+    }
+}
+int GameState::get_turn_score() {
+    return m_turn_score;
 }
 

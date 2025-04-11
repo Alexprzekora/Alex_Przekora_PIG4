@@ -8,17 +8,18 @@
 
 class Game {
 public:
-    Game(int target_score= 20);
-    void displayrules() const;
-    void takeTurn();
-    void playGame();
-    void hold(int target_score);
+    Game();
+    void reset_game_score();
+    int get_game_score();
+    void set_game_over(bool status);
+    bool get_game_over();
+    void display_rules();
+    virtual void play_game() = 0;
 
 
-    private:
-    GameState game_state;
-    Die die;
-    int target_score;
+    protected:
+    int m_game_score;
+    bool m_game_over;
     
 };
 

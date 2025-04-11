@@ -1,9 +1,9 @@
 
-#include "GAME.h"
-
+#include "New Game.h"
+#include <ctime>
 
 int main() {
-    Game game1;
-    game1.playGame();
-    return 0;
+
+    NewGame game;
+    game.play_game();
 }
